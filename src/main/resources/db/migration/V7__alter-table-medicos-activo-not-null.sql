@@ -1,0 +1,1 @@
+alter table medicos modify activo tinyint not null;

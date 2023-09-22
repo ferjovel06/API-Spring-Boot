@@ -1,0 +1,1 @@
+alter table pacientes modify activo tinyint not null;
