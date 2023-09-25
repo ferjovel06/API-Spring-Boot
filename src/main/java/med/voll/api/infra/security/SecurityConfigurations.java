@@ -26,7 +26,8 @@ public class SecurityConfigurations {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity.csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.POST, "/login").permitAll()
+                .authorizeHttpRequests(auth -> auth.requestMatchers("HttpMethod.POST", "/login").permitAll()
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
                         .requestMatchers(HttpMethod.DELETE, "/medicos").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/pacientes").hasRole("ADMIN")
                         .anyRequest().authenticated())
